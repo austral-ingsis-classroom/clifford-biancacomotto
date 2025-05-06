@@ -57,17 +57,14 @@ public final class FileSystemManagement {
       switch (order.get()) {
         case "asc" -> children.sort(Comparator.comparing(FileSystem::getName));
         case "desc" -> children.sort((a, b) -> b.getName().compareTo(a.getName()));
-        // Si no es "asc" ni "desc", no se ordena → mantiene orden de creación
+          // Si no es "asc" ni "desc", no se ordena → mantiene orden de creación
       }
     }
 
-    String result = children.stream()
-            .map(FileSystem::getName)
-            .collect(Collectors.joining(" "));
+    String result = children.stream().map(FileSystem::getName).collect(Collectors.joining(" "));
 
     return Optional.of(result);
   }
-
 
   /*public Optional<String> ls(Optional<String> order) { //recibe unorden desc, normal o asc
           List<FileSystem> children = new ArrayList<>(current.getChildren()); // todos los archivos y carpetas del directorio actual (current).

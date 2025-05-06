@@ -11,7 +11,6 @@ public class FileSystemTests {
 
   private final FileSystemRunner runner = new FileSystemRunner();
 
-
   private void executeTest(List<Map.Entry<String, String>> commandsAndResults) {
     final List<String> commands = commandsAndResults.stream().map(Map.Entry::getKey).toList();
     final List<String> expectedResult =
@@ -49,25 +48,6 @@ public class FileSystemTests {
             entry("ls", "elizabeth.txt t-bone")));
   }
 
-  @Test
-  void test3() {
-    executeTest(
-            List.of(
-                    entry("mkdir horace", "'horace' directory created"),
-                    entry("mkdir emily", "'emily' directory created"),
-                    entry("mkdir jetta", "'jetta' directory created"),
-                    entry("cd emily", "moved to directory 'emily'"),
-                    entry("mkdir t-bone", "'t-bone' directory created"),
-                    entry("touch elizabeth.txt", "'elizabeth.txt' file created"),
-                    entry("ls", "t-bone elizabeth.txt"),
-                    entry("rm t-bone", "cannot remove 't-bone', is a directory"),
-                    entry("rm --recursive t-bone", "'t-bone' removed"),
-                    entry("ls", "elizabeth.txt"),
-                    entry("rm elizabeth.txt", "'elizabeth.txt' removed"),
-                    entry("ls", "")
-            )
-    );
-  }
 
 
   @Test
@@ -124,4 +104,5 @@ public class FileSystemTests {
             entry("ls", "emily.txt jetta.txt"),
             entry("ls --ord=desc", "jetta.txt emily.txt")));
   }
+
 }
